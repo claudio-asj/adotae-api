@@ -65,6 +65,8 @@ public class Animal {
 
     private LocalDate createdAt;
 
+    private String city;
+
     @Lob @Basic(fetch = FetchType.LAZY)
     private byte[] image1;
 

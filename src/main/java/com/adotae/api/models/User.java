@@ -30,6 +30,8 @@ public class User {
 
     private String phone;
 
+    private String city;
+
     @Column(unique = true, nullable = false)
     private String cpf;
 
