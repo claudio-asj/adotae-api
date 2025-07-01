@@ -1,6 +1,6 @@
 package com.adotae.api.controllers;
 
-import com.adotae.api.Dtos.UserDto;
+import com.adotae.api.dtos.UserDto;
 import com.adotae.api.forms.UserForm;
 import com.adotae.api.models.User;
 import com.adotae.api.repositories.UserRepository;

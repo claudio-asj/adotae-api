@@ -1,4 +1,4 @@
-package com.adotae.api.Dtos;
+package com.adotae.api.dtos;
 
 import com.adotae.api.models.User;
 
