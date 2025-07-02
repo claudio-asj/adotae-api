@@ -42,7 +42,7 @@ public class User {
     private byte[] image;
 
     // Animais que o usuário é responsável
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     private List<Animal> animals;
 
     // Animais favoritos do usuário

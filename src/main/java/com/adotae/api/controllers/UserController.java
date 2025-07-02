@@ -1,10 +1,9 @@
 package com.adotae.api.controllers;
 
-import com.adotae.api.dtos.UserDto;
+import com.adotae.api.dtos.UserDTO;
 import com.adotae.api.forms.UserForm;
 import com.adotae.api.models.User;
 import com.adotae.api.repositories.UserRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +17,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @GetMapping
-    public ResponseEntity<List<UserDto>> getUsers(){
-        List<UserDto> usersDto = userRepository.findAll()
+    public ResponseEntity<List<UserDTO>> getUsers(){
+        List<UserDTO> usersDto = userRepository.findAll()
                 .stream()
-                .map(UserDto::new)
+                .map(UserDTO::new)
                 .toList();
         return ResponseEntity.ok(usersDto);
     }
@@ -31,7 +30,7 @@ public class UserController {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
-            return ResponseEntity.ok(new UserDto(optionalUser.get()));
+            return ResponseEntity.ok(new UserDTO(optionalUser.get()));
         } else {
             return ResponseEntity.status(404).body(Map.of("error", "User not found"));
         }
@@ -41,7 +40,8 @@ public class UserController {
     public ResponseEntity<?> createUser(@RequestBody UserForm form){
         try {
             User userSaved = userRepository.save(form.create());
-            return ResponseEntity.ok(new UserDto(userSaved));
+            System.out.println("Senha recebida: " + form.getPassword());
+            return ResponseEntity.ok(new UserDTO(userSaved));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -56,7 +56,7 @@ public class UserController {
         }
 
         User updatedUser = form.update(id, userRepository);
-        return ResponseEntity.ok(new UserDto(updatedUser));
+        return ResponseEntity.ok(new UserDTO(updatedUser));
     }
 
     @DeleteMapping("/{id}")

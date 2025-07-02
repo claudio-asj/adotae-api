@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: adotae_postgres
+    environment:
+      POSTGRES_DB: adotaedb
+      POSTGRES_USER: adotaeuser
+      POSTGRES_PASSWORD: adotaepass
+    ports:
+      - "5432:5432"
+    volumes:
+      - adotae_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  adotae_pg_data:

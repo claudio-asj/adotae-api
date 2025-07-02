@@ -44,7 +44,6 @@ public class Animal {
 
     private String disabilityDesc;
 
-    @ElementCollection
     private List<String> vaccines;
 
     private Boolean isGoodWithKids;

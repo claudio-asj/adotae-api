@@ -6,12 +6,12 @@ import java.security.NoSuchAlgorithmException;
 
 public class HashUtil {
     public static String sha256(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("Input para hash não pode ser null");
+        }
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
-
             byte[] hashBytes = digest.digest(input.getBytes(StandardCharsets.UTF_8));
-
-            // Converte para string hexadecimal
             StringBuilder hexString = new StringBuilder();
 
             for (byte b : hashBytes) {
